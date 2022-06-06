@@ -1,0 +1,45 @@
+.category-portfolio-items {
+    &-marquee {
+        overflow: hidden;
+        margin-top: 40px;
+    }
+
+    &-top {
+        padding: 0;
+        margin-bottom: 30px;
+    }
+
+    &-heading {
+        text-align: right;
+        background-color: $white;
+
+        @include sm-min {
+            font-size: 58px;
+        }
+
+        @include lg-min {
+            font-size: 100px;
+        }
+    }
+
+    &-logos {
+        display: flex;
+        align-items: center;
+    }
+
+    &-items-wrap {
+        margin: -10px;
+
+        @include sm-min {
+            display: flex;
+        }
+    }
+
+    &-link {
+        display: block;
+        margin-top: 20px;
+        text-align: right;
+        color: $green;
+        font-size: 18px;
+    }
+}
