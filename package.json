@@ -3,7 +3,7 @@
   "private": true,
   "description": "Advanced Gatsby ACF Wordpress Starter",
   "version": "2.0.0",
-  "author": "Elliott Wagener <elliott.wagener@hotmail.com>",
+  "author": "Forefront Web",
   "dependencies": {
     "@apollo/client": "^3.5.9",
     "@fortawesome/fontawesome-free": "^5.15.4",
