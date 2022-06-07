@@ -6,8 +6,8 @@ module.exports = {
         url: process.env.WPGRAPHQL_URL || `http://headless-forefront-2022.flywheelsites.com/graphql`,
         auth: {
           htaccess: {
-            username: process.env.HTTPBASICAUTH_USERNAME,
-            password: process.env.HTTPBASICAUTH_PASSWORD
+            username: "forefront",
+            password: "forefront"
           }
         }
       },
@@ -24,7 +24,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-apollo',
       options: {
-        uri: 'http://ff2022.local/graphql'
+        uri: process.env.WPGRAPHQL_URL || `http://headless-forefront-2022.flywheelsites.com/graphql`
       }
     }
   ],

@@ -6,7 +6,7 @@ import * as styles from './servicetiles.module.scss';
 const ServicesTiles = ({ bottomPadding, button, heading, preheading, tiles, topPadding }) => {
     const renderTiles = (tiles) => {
         return tiles.map((tile, index) => (
-            <Tile tile={tile} key={tile.link.title} index={index} />
+            <Tile tile={tile} key={tile?.link?.title} index={index} />
         ))
     }
     return (

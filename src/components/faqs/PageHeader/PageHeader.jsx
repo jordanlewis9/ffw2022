@@ -10,7 +10,7 @@ const PageHeader = ({ pageHeader }) => {
                     <div className={`col-md ${styles.pageHeaderLeftColumn}`}>
                         <div className={styles.pageHeaderInner}>
                             <h1 className={styles.pageHeaderTitle}>
-                                {pageHeader}
+                                FAQs
                             </h1>
                         </div>
                     </div>

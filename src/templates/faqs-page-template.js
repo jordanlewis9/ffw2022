@@ -55,9 +55,6 @@ export const query = graphql `
             description
             title
           }
-            pageHeader {
-              headerCustomHeading
-            }
             template {
               ... on WpFAQsPageTemplate {
                 templateName
