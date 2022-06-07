@@ -6,8 +6,8 @@ module.exports = {
         url: process.env.WPGRAPHQL_URL || `http://headless-forefront-2022.flywheelsites.com/graphql`,
         auth: {
           htaccess: {
-            username: "forefront",
-            password: "forefront"
+            username: process.env.BASICHTTPAUTH_USERNAME,
+            password: process.env.BASICHTTPAUTH_PASSWORD
           }
         }
       },
