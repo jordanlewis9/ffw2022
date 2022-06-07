@@ -3,13 +3,7 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: process.env.WPGRAPHQL_URL || `http://ff2022.local/graphql`,
-        auth: {
-          htaccess: {
-            username: process.env.HTTPBASICAUTH_USERNAME,
-            password: process.env.HTTPBASICAUTH_PASSWORD
-          }
-        }
+        url: process.env.WPGRAPHQL_URL || `http://headless-forefront-2022.flywheelsites.com/graphql`,
       },
     },
     `gatsby-transformer-sharp`,
