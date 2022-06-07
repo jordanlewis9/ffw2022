@@ -17,8 +17,8 @@ const AwardsAndAffiliations = ({ animation, bottomPadding, button, content, head
                         </div>
                         {button && 
                         <div className={styles.awardsAffiliationsButtonWrap}>
-                            <Link to={button.url} className={`forefrontweb-button ${styles.awardsAffiliationsButton}`} title={button.title} target={button.target}>
-                                <span>{button.title}</span>
+                            <Link to={button?.url} className={`forefrontweb-button ${styles.awardsAffiliationsButton}`} title={button?.title} target={button?.target}>
+                                <span>{button?.title}</span>
                             </Link>
                         </div>
                         }

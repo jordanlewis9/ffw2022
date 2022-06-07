@@ -31,8 +31,8 @@ const HomepageHero = ({ rightImage, popoutHeading, popoutContent, preheading, he
                                 </div>
                             </div>
                             <div className={styles.homeHeroButtons}>
-                                { solidButton ? <Link className={`${styles.homeHeroSolidButton} forefrontweb-button`} to={solidButton.url} target={solidButton.target} title={solidButton.title}><span>{solidButton.title}</span></Link> : ''}
-                                { ghostButton ? <Link className={`${styles.homeHeroGhostButton} forefrontweb-button forefrontweb-button--ghost`} to={ghostButton.url} target={ghostButton.target} title={ghostButton.title}><span>{ghostButton.title}</span></Link> : ''}
+                                { solidButton && <Link className={`${styles.homeHeroSolidButton} forefrontweb-button`} to={solidButton.url} target={solidButton.target} title={solidButton.title}><span>{solidButton.title}</span></Link>}
+                                { ghostButton && <Link className={`${styles.homeHeroGhostButton} forefrontweb-button forefrontweb-button--ghost`} to={ghostButton.url} target={ghostButton.target} title={ghostButton.title}><span>{ghostButton.title}</span></Link>}
                             </div>
                         </div>
                     </div>

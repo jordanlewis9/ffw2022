@@ -27,7 +27,7 @@ const ScrollingLogos = ({ scrollSpeed, logos, animation, topPadding, bottomPaddi
             for ( let j = 0; j < 4; j++) {
                 logos.forEach(logo => {
                     i++;
-                    renderedArray.push(<Logo logo={logo.logo} link={logo.link} key={`${logo.link.title}${i}`}/>)
+                    renderedArray.push(<Logo logo={logo.logo} link={logo?.link} key={`${logo?.link?.title}${i}`}/>)
                 });
             }
             return renderedArray;

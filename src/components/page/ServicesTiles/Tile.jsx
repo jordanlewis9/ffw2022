@@ -9,10 +9,10 @@ const Tile = ({ tile, index }) => {
 
     return (
         <div className={styles.servicesTilesCol} data-aos="fade-up" data-aos-delay={delay}>
-            <Link className={styles.servicesTilesTile} to={link.url} target={link.target} title={link.title}>
+            <Link className={styles.servicesTilesTile} to={link?.url} target={link?.target} title={link?.title}>
                 <div className={styles.servicesTilesInner}>
                     <div className={styles.servicesTilesIcon} style={{backgroundImage: `url(${icon.sourceUrl})`}}></div>
-                    <div className={styles.servicesTilesTileText}>{link.title}</div>
+                    <div className={styles.servicesTilesTileText}>{link?.title}</div>
                 </div>
             </Link>
         </div>

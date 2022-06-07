@@ -39,8 +39,8 @@ const FeaturedCaseStudy = ({ bottomPadding, backgroundImage, link, logo, topPadd
                     </div>
                     <div className={`col-md-6 ${styles.featuredCaseStudyRightCol}`}>
                         <div className={styles.featuredCaseStudyLinkWrap} data-aos="fade-in">
-                            <Link className={`${styles.featuredCaseStudyLink} h3`} to={link.url} target={link.target} title={link.title}>
-                                <span>{link.title}</span>
+                            <Link className={`${styles.featuredCaseStudyLink} h3`} to={link?.url} target={link?.target} title={link?.title}>
+                                <span>{link?.title}</span>
                                 <div className={styles.featuredCaseStudyLinkArrow}></div>
                             </Link>
                         </div>

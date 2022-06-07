@@ -31,10 +31,10 @@ const PageTemplate = pageProps => {
       AOS.refresh();
     }
   });
-  const { ctaContent, ctaLink } = pageProps.data.wpPage.template.faqsPage;
+  const { ctaContent, ctaLink } = pageProps?.data?.wpPage?.template?.faqsPage;
   return (
     <GlobalContainer pageProps={pageProps}>
-        <PageHeader pageHeader={pageProps.data.wpPage.pageHeader.headerCustomHeading} />
+        <PageHeader pageHeader={pageProps?.data?.wpPage?.pageHeader?.headerCustomHeading} />
         <div className='faqs-page'>
           <div className="container">
             <div className="row">

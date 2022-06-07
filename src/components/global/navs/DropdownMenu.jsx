@@ -9,8 +9,8 @@ const DropdownMenu = ({themeOptions, subMenuItems, showSubMenu, handleShowSubMen
         const singleParentItem = subMenuItems.filter(item => item.parentDatabaseId === 0);
         return singleParentItem.map(item => {
             return (
-                <Link key={item.label} to={item.path} title={item.label} name={item.label} className={styles.dropdownCenterColumnHeading}>
-                    {item.label}
+                <Link key={item?.label} to={item?.path} title={item?.label} name={item?.label} className={styles.dropdownCenterColumnHeading}>
+                    {item?.label}
                     <div className={styles.dropdownCenterColumnHeadingArrow}>
                         <div className={styles.dropdownCenterColumnHeadingArrowPointer}></div>
                     </div>
@@ -25,9 +25,9 @@ const DropdownMenu = ({themeOptions, subMenuItems, showSubMenu, handleShowSubMen
                  return;
             } else {
                 return (
-                    <li key={item.label} className={styles.dropdownCenterColumnMenuItem}>
-                        <Link key={item.label} to={item.path} title={item.label} name={item.label} className={styles.dropdownCenterColumnMenuItemLink}>
-                            {item.label}
+                    <li key={item?.label} className={styles.dropdownCenterColumnMenuItem}>
+                        <Link key={item?.label} to={item?.path} title={item?.label} name={item?.label} className={styles.dropdownCenterColumnMenuItemLink}>
+                            {item?.label}
                         </Link>
                     </li>
                 )
@@ -39,9 +39,9 @@ const DropdownMenu = ({themeOptions, subMenuItems, showSubMenu, handleShowSubMen
     const renderUtilityLinks = () => {
         const renderedUtilityLinks = themeOptions.dropdownUtilityLinks.map(link => {
             return (
-                <li key={link.link.title} className={styles.dropdownRightColumnMenuItem}>
-                    <a key={link.link.title} href={link.link.url} title={link.link.title} name={link.link.title} className={styles.dropdownRightColumnMenuItemLink}>
-                        {link.link.title}
+                <li key={link?.link?.title} className={styles.dropdownRightColumnMenuItem}>
+                    <a key={link?.link?.title} href={link?.link?.url} title={link?.link?.title} name={link?.link?.title} className={styles.dropdownRightColumnMenuItemLink}>
+                        {link?.link?.title}
                     </a>
                 </li>
             )
@@ -52,11 +52,11 @@ const DropdownMenu = ({themeOptions, subMenuItems, showSubMenu, handleShowSubMen
     const renderSubMenu = () => {
         return (
         <>
-            <Link className={styles.dropdownLeftColumn} to={themeOptions.dropdownCtaLink.url} target={themeOptions.dropdownCtaLink.target} title={themeOptions.dropdownCtaLink.title}>
+            <Link className={styles.dropdownLeftColumn} to={themeOptions?.dropdownCtaLink?.url} target={themeOptions?.dropdownCtaLink?.target} title={themeOptions?.dropdownCtaLink?.title}>
                 {image && <div style={{ backgroundImage: `url('${image}')`}} className={styles.dropdownLeftColumnImage}></div>}
                 <div className={styles.dropdownLeftColumnCta}>
                     <div className={styles.dropdownLeftColumnCtaText}>
-                        {themeOptions.dropdownCtaLink.title}
+                        {themeOptions?.dropdownCtaLink?.title}
                     </div>
                     <div className={styles.dropdownLeftColumnCtaArrow}>
                         <div className={styles.dropdownLeftColumnCtaArrowPointer}>
@@ -75,8 +75,8 @@ const DropdownMenu = ({themeOptions, subMenuItems, showSubMenu, handleShowSubMen
                 <ul className={styles.dropdownRightColumnMenu}>
                     {renderUtilityLinks()}
                 </ul>
-                <a href={`mailto:${themeOptions.dropdownEmail}`} className={styles.dropdownRightColumnEmail}>{themeOptions.dropdownEmail}</a>
-                <a href={`tel:${themeOptions.dropdownPhoneNumber}`} className={styles.dropdownRightColumnPhone}>{themeOptions.dropdownPhoneNumber}</a>
+                <a href={`mailto:${themeOptions?.dropdownEmail}`} className={styles.dropdownRightColumnEmail}>{themeOptions?.dropdownEmail}</a>
+                <a href={`tel:${themeOptions?.dropdownPhoneNumber}`} className={styles.dropdownRightColumnPhone}>{themeOptions?.dropdownPhoneNumber}</a>
             </div>
             <button aria-label="Dropdown Menu Close Button" className={`${styles.dropdownCloseButton} menu-close-button`} onClick={(e) => handleShowSubMenu(e)}></button>
         </>

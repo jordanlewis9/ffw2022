@@ -107,16 +107,16 @@ const Checklist = ({ checklist }) => {
             if (item.visited === true) {
                 return (
                     <li className={styles.checked} key={item.path}>
-                        <Link to={item.path} className={styles.pageHeaderChecklistItem}>
-                            <span dangerouslySetInnerHTML={{ __html: item.title }}></span>
+                        <Link to={item?.path} className={styles.pageHeaderChecklistItem}>
+                            <span dangerouslySetInnerHTML={{ __html: item?.title }}></span>
                         </Link>
                     </li>
                 )
             } else {
                 return (
                     <li key={item.path}>
-                        <Link to={item.path} className={styles.pageHeaderChecklistItem}>
-                            <span dangerouslySetInnerHTML={{ __html: item.title }}></span>
+                        <Link to={item?.path} className={styles.pageHeaderChecklistItem}>
+                            <span dangerouslySetInnerHTML={{ __html: item?.title }}></span>
                         </Link>
                     </li>
                 )

@@ -26,9 +26,9 @@ const Support = () => {
 
     const renderLinks = (links) => {
         return links.map(link => (
-            <div className={styles.siteFooterSupportWrap} key={link.link.title}>
-                {link.link.url.includes('http') ? <a href={link.link.url} target={link.link.target} title={link.link.title} className={`${styles.siteFooterSupportButton} forefrontweb-button forefrontweb-button--${link.buttonStyle}`}><span>{link.link.title}</span></a> 
-                : <Link to={link.link.url} target={link.link.target} title={link.link.title} className={`${styles.siteFooterSupportButton} forefrontweb-button forefrontweb-button--${link.buttonStyle}`}><span>{link.link.title}</span></Link>}
+            <div className={styles.siteFooterSupportWrap} key={link?.link?.title}>
+                {link?.link?.url.includes('http') ? <a href={link?.link?.url} target={link?.link?.target} title={link?.link?.title} className={`${styles.siteFooterSupportButton} forefrontweb-button forefrontweb-button--${link?.buttonStyle}`}><span>{link?.link?.title}</span></a> 
+                : <Link to={link?.link?.url} target={link?.link?.target} title={link?.link?.title} className={`${styles.siteFooterSupportButton} forefrontweb-button forefrontweb-button--${link?.buttonStyle}`}><span>{link?.link?.title}</span></Link>}
             </div>
         ))
     }

@@ -38,11 +38,11 @@ const Logo = ({ item, isRest }) => {
         }
 
         if (isRest) {
-            setItemLink(item.link.replace(process.env.GATSBY_ROOT, ''));
-            setItemTitle(item.title.rendered);
+            setItemLink(item?.link?.replace(process.env.GATSBY_ROOT, ''));
+            setItemTitle(item?.title?.rendered);
         } else {
-            setItemLink(item.uri);
-            setItemTitle(item.title);
+            setItemLink(item?.uri);
+            setItemTitle(item?.title);
         }
     }, [isRest, item]);
 

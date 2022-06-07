@@ -84,7 +84,7 @@ const NavMenu = ({ showMenu, setShowMenu }) => {
             possibleParents = [];
             subMenuItems = [];
             if (node.childItems.nodes.length === 0) {
-                return <li className={`${styles.menuItemNoChildren} ${styles.menuItem}`} key={node.databaseId}><Link to={node.path}>{node.label}</Link></li>;
+                return <li className={`${styles.menuItemNoChildren} ${styles.menuItem}`} key={node.databaseId}><Link to={node?.path}>{node?.label}</Link></li>;
               } else {
                 possibleParents = [node.databaseId]
                 subMenuItems = [node]
@@ -97,7 +97,6 @@ const NavMenu = ({ showMenu, setShowMenu }) => {
                 return (
                   <li onClick={(e) => handleShowSubMenu(e)} onMouseEnter={(e) => handleShowSubMenu(e, showSubMenu)} onMouseLeave={(e) => handleShowSubMenu(e)} data-database-id={node.databaseId} className={`${styles.menuItemHasChildren} ${styles.menuItem} menu-item-has-children`} key={node.databaseId} data-sub-menu={node.databaseId}>
                     <span className={styles.menuItemHasChildrenLabel}>{node.label}</span>
-                    {/* <a href='' onClick={(e) => handleShowSubMenu(e, showSubMenu)} data-database-id={node.databaseId}>{node.label}</a> */}
                     <DropdownMenu themeOptions={themeOptions} subMenuItems={subMenuItems} showSubMenu={showSubMenu} handleShowSubMenu={handleShowSubMenu} databaseId={node.databaseId} />
                   </li>);
               }

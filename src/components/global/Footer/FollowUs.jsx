@@ -29,9 +29,9 @@ const FollowUs = () => {
 
     const renderSocials = (socials) => {
         return socials.map(social => (
-            <a key={social.link.title} className={styles.siteFooterSocialLink} href={social.link.url} target={social.link.target} title={social.link.title}>
+            <a key={social?.link?.title} className={styles.siteFooterSocialLink} href={social?.link?.url} target={social?.link?.target} title={social?.link?.title}>
                 <span className={styles.siteFooterSocialIcon}><FontAwesomeIcon icon={social.icon}></FontAwesomeIcon></span>
-                {social.link.title}
+                {social?.link?.title}
             </a>
         ))
     }

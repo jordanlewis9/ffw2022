@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import ContactUs from './ContactUs';
 import QuickLinks from './QuickLinks';
 import Support from './Support';

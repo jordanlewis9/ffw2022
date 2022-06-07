@@ -27,8 +27,8 @@ const QuickLinks = () => {
 
     const renderLinks = (links) => {
         return links.map(link => (
-            <li key={link.label}>
-                <Link to={link.url} title={link.label}>{link.label}</Link>
+            <li key={link?.label}>
+                <Link to={link?.url} title={link?.label}>{link?.label}</Link>
             </li>
         ))
     }
