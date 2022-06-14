@@ -24,7 +24,7 @@ const IconList = ({ animation, bottomPadding, heading, list, topPadding }) => {
             <div className="container container-narrow container-no-padding">
                 <div className={styles.iconListBox} data-aos={animation && animation}>
                     {renderHeading()}
-                    {list.length > 0 && <ul className={styles.iconListList}>
+                    {list?.length > 0 && <ul className={styles.iconListList}>
                         {renderList()}
                     </ul>}
                 </div>
