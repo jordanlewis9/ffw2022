@@ -45,8 +45,10 @@ const GlobalContainer = (props) => {
         }
     }, [])
 
-    const pageTitle = props?.pageProps?.data?.wpPage?.seo?.title || props?.props?.data[props.queryName]?.seo?.title;
-    const pageDescription = props?.pageProps?.data?.wpPage?.seo?.description || props?.props?.data[props.queryName]?.seo?.description;
+    console.log(props);
+
+    const pageTitle = props?.pageProps?.data?.wpPage?.seo?.title || props?.props?.data[props.queryName]?.seo?.title || props?.pageProps?.data?.wpPage?.title;
+    const pageDescription = props?.pageProps?.data?.wpPage?.seo?.metaDescription || props?.props?.data[props.queryName]?.seo?.metaDescription;
 
     return (
         <div className={`page-content ${isHome && isHome}`}>

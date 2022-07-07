@@ -40,7 +40,7 @@ export const query = graphql`
 query AllFaqQuery($id: String!) {
     wpFaqCategory(id: {eq: $id}) {
         seo {
-          description
+          metaDescription
           title
         }
         name

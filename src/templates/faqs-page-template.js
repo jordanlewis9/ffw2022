@@ -52,7 +52,7 @@ export const query = graphql `
     query Faq($id: String!) {
         wpPage(id: {eq: $id}) {
           seo {
-            description
+            metaDescription
             title
           }
             template {

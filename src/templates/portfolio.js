@@ -59,7 +59,7 @@ export const query = graphql`
     wpPortfolio(id: { eq: $id }) {
         title
         seo {
-          description
+          metaDescription
           title
         }
         terms {

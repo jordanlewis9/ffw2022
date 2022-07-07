@@ -41,7 +41,7 @@ export const query = graphql`
   query PostQuery($id: String!) {
     wpPost(id: { eq: $id }) {
       seo {
-        description
+        metaDescription
         title
       }
       title

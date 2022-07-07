@@ -62,7 +62,7 @@ const getPages = async ({ graphql }) => {
               slug
               uri
               seo {
-                description
+                metaDescription
                 title
               }
               template {
@@ -212,7 +212,7 @@ const createTemporaryPageTemplateFile = (
           title
           ${getComponentsQuery(postType, true, componentNames)}
           seo {
-            description
+            metaDescription
             title
           }
         }

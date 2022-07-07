@@ -40,7 +40,7 @@ export const query = graphql`
 query PersonQuery($id: String!) {
     wpPerson(id: {eq: $id}) {
       seo {
-        description
+        metaDescription
         title
       }
         title
