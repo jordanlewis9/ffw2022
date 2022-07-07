@@ -36,7 +36,6 @@ const Checklist = ({ checklist }) => {
 
     useEffect(() => {
         let savedChecklist = data?.allWpChecklist?.nodes.filter(el => el?.databaseId === parseFloat(checklist));
-        console.log(savedChecklist);
         setChecklistTitle(savedChecklist[0]?.title);
         let checklistToRender = savedChecklist[0]?.checklist?.checklistPages;
         setChecklistItems(checklistToRender);
@@ -62,11 +61,6 @@ const Checklist = ({ checklist }) => {
             title: checklistTitle,
             allVisited: updateTitle(updatedChecklist)
         }
-
-        // let checklistObject = {
-        //     title: checklistTitleObject,
-        //     checklist: updatedChecklist
-        // };
 
         return [updatedChecklist, checklistTitleObject];
     }

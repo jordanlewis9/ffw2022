@@ -5,7 +5,6 @@ import * as styles from './pageheader.module.scss';
 
 const PageHeader = ({ pageTitle, includeChecklist, checklistToShow }) => {
     const { pageProps } = useContext(PagePropsContext);
-    console.log(pageProps);
 
     useEffect(() => {
         if (typeof Storage !== 'undefined') {
