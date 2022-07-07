@@ -15,7 +15,7 @@ const PointsWithLinks = ({ animation, bottomPadding, heading, points, topPadding
                         <h3 className={styles.pointsLinksHeading}>{heading}</h3>
                     </div>
                     }
-                    {points.length > 0 && 
+                    {points?.length > 0 && 
                     <ul className={styles.pointsLinksList}>
                         {renderPoints()}
                     </ul>

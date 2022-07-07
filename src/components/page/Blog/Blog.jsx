@@ -10,6 +10,8 @@ const Blog = ({ animation, paddingTop, paddingBottom }) => {
     const [blogs, setBlogs] = useState(null);
     const [totalPages, setTotalPages] = useState(null);
 
+    console.log(pageProps);
+
     useEffect(() => {
         const fetchData = async () => {
             try {

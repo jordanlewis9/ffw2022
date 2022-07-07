@@ -1,81 +1,57 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'gatsby';
+import React, { useEffect, useState, useContext } from 'react';
+import { Link, useStaticQuery, graphql } from 'gatsby';
+import { PagePropsContext } from '../../global/GlobalContext';
 import axios from 'axios';
 import * as styles from './checklist.module.scss';
 
 const Checklist = ({ checklist }) => {
+    const { pageProps } = useContext(PagePropsContext);
+
+    const data = useStaticQuery(graphql`
+    query TheChecklistQuery {
+        allWpChecklist {
+          nodes {
+            databaseId
+            title
+            id
+            checklist {
+              checklistPages {
+                ... on WpPage {
+                  id
+                  title
+                  uri
+                  pageChecklist {
+                    pageChecklistTitle
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `);
+
     const [checklistItems, setChecklistItems] = useState([]);
     const [checklistTitle, setChecklistTitle] = useState(null);
 
     useEffect(() => {
-        let savedChecklist;
-        const fetchData = async () => {
-            // Gathering the checklist data based on which checklist to show via API call
-            try {
-                const response = await axios.get(`${process.env.GATSBY_ROOT}/wp-json/wp/v2/checklist/${checklist}`);
-                // Creating an object for all information related to checklist title
-                setChecklistTitle({
-                    title: response.data.title.rendered,
-                    allVisited: false
-                });
-                // Calling API for page data for each page in the checklist
-                const pageIds = response.data.acf['checklist_pages'];
-                let retrievedPages = await Promise.all(pageIds.map(async (item) => {
-                    const { data } = await axios.get(`${process.env.GATSBY_ROOT}/wp-json/wp/v2/pages/${item}`);
-                    return data;
-                }));
-                
-                // Reducing amount of properties in page object as well as customization for checklist item use
-                retrievedPages = retrievedPages.map(page => {
-                    let pageObject = {};
-                    // There may need to be a better way to get the relative path, aside from statically replacing a static root
-                    let relativePath = page.link.replace(process.env.GATSBY_ROOT, '');
-                    // window.location.pathname returns either /name/ or /name. We set up the page slug to match /name/ here
-                    pageObject.pageSlug = `/${page.slug}/`;
-                    pageObject.visited = false;
-                    pageObject.title = page.title.rendered;
-                    pageObject.path = relativePath;
-                    return pageObject;
-                });
-
-                setChecklistItems(retrievedPages);
-            } catch (err) {
-                if (process.env.NODE_ENV === 'development') {
-                    console.error(err.response.data);
-                }
-            }
-        }
-
-        // If statement is for Gatsby build since Storage does not exist outside of a browser environment
-        if (typeof Storage !== 'undefined') {
-            savedChecklist = sessionStorage.getItem(`${checklist}`);
-        }
-
-        // If we've already downloaded the checklist, we don't have to make the 6 API calls and can just save both title objects
-        // and item objects to state, where we can then modify them
-        if (savedChecklist) {
-            savedChecklist = JSON.parse(savedChecklist);
-            setChecklistItems(savedChecklist.checklist);
-            setChecklistTitle(savedChecklist.title);
-        } else {
-            fetchData();
-        }
+        let savedChecklist = data?.allWpChecklist?.nodes.filter(el => el?.databaseId === parseFloat(checklist));
+        console.log(savedChecklist);
+        setChecklistTitle(savedChecklist[0]?.title);
+        let checklistToRender = savedChecklist[0]?.checklist?.checklistPages;
+        setChecklistItems(checklistToRender);
     }, []);
 
     const updateTitle = (checklistArray) => {
-        if (checklistTitle.allVisited === true) {
-            return true;
-        }
-
         return checklistArray.every(item => item.visited === true);
     }
 
     const updateChecklist = () => {
         let updatedChecklist = checklistItems.map(item => {
             // If statement is for Gatsby build, since window does not exist outside of the browser
-            if (typeof window !== 'undefined') {
+            if (typeof window !== 'undefined' && typeof Storage !== 'undefined') {
                 // Pathname can either return with slashes on both ends, or just one, and both are valid.
-                if (`${window.location.pathname}/` === `${item.pageSlug}` || `${window.location.pathname}` === `${item.pageSlug}`) {
+                if (JSON.parse(sessionStorage.getItem('pagesVisited')).some(page => page === item.id)) {
                     item.visited = true;
                 }
             }
@@ -83,19 +59,14 @@ const Checklist = ({ checklist }) => {
         });
 
         let checklistTitleObject = {
-            title: checklistTitle.title,
+            title: checklistTitle,
             allVisited: updateTitle(updatedChecklist)
         }
 
-        let checklistObject = {
-            title: checklistTitleObject,
-            checklist: updatedChecklist
-        };
-
-        // If statement is for Gatsby build, since Storage does not exist outside of the browser
-        if (typeof Storage !== 'undefined') {
-            sessionStorage.setItem(`${checklist}`, JSON.stringify(checklistObject));
-        }
+        // let checklistObject = {
+        //     title: checklistTitleObject,
+        //     checklist: updatedChecklist
+        // };
 
         return [updatedChecklist, checklistTitleObject];
     }
@@ -104,19 +75,19 @@ const Checklist = ({ checklist }) => {
         let [updatedChecklist, checklistTitleObject] = updateChecklist();
 
         updatedChecklist = updatedChecklist.map(item => {
-            if (item.visited === true) {
+            if (item?.visited === true) {
                 return (
-                    <li className={styles.checked} key={item.path}>
-                        <Link to={item.path} className={styles.pageHeaderChecklistItem}>
-                            <span dangerouslySetInnerHTML={{ __html: item.title }}></span>
+                    <li className={styles.checked} key={item?.id}>
+                        <Link to={item?.uri} className={styles.pageHeaderChecklistItem} title={item?.title}>
+                            <span dangerouslySetInnerHTML={{ __html: item?.pageChecklist?.pageChecklistTitle ? item.pageChecklist.pageChecklistTitle : item?.title }}></span>
                         </Link>
                     </li>
                 )
             } else {
                 return (
-                    <li key={item.path}>
-                        <Link to={item.path} className={styles.pageHeaderChecklistItem}>
-                            <span dangerouslySetInnerHTML={{ __html: item.title }}></span>
+                    <li key={item?.id}>
+                        <Link to={item?.uri} className={styles.pageHeaderChecklistItem}>
+                            <span dangerouslySetInnerHTML={{ __html: item?.pageChecklist?.pageChecklistTitle ? item.pageChecklist.pageChecklistTitle : item?.title }}></span>
                         </Link>
                     </li>
                 )
@@ -138,7 +109,7 @@ const Checklist = ({ checklist }) => {
 
     return (
         <div className={styles.pageHeaderChecklist}>
-            {checklistItems.length > 0 && renderChecklist()}
+            {checklistItems?.length > 0 && renderChecklist()}
         </div>
     )
 }

@@ -1,8 +1,32 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { PagePropsContext } from '../../global/GlobalContext';
 import Checklist from './Checklist';
 import * as styles from './pageheader.module.scss';
 
 const PageHeader = ({ pageTitle, includeChecklist, checklistToShow }) => {
+    const { pageProps } = useContext(PagePropsContext);
+    console.log(pageProps);
+
+    useEffect(() => {
+        if (typeof Storage !== 'undefined') {
+            if (pageProps?.pageContext?.id) {
+                let currentPagesVisited = JSON.parse(sessionStorage.getItem('pagesVisited'));
+        
+                if (currentPagesVisited) {
+                    if (currentPagesVisited.some((page) => page === pageProps.pageContext.id)) {
+                        return;
+                    } else {
+                        currentPagesVisited.push(pageProps.pageContext.id);
+                        sessionStorage.setItem('pagesVisited', JSON.stringify(currentPagesVisited));
+                    }
+                } else {
+                    let firstPageVisited = [pageProps.pageContext.id];
+                    sessionStorage.setItem('pagesVisited', JSON.stringify(firstPageVisited));
+                }
+            }
+        }
+    }, [])
+
     
     return (
         <section className={`${styles.pageHeader} ${includeChecklist && styles.pageHeaderHasChecklist}`}>
