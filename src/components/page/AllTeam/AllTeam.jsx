@@ -2,7 +2,7 @@ import React from 'react';
 import Person from './Person';
 import * as styles from './team.module.scss';
 
-const Team = ({ bottomPadding, peopleToDisplay, topPadding, heading }) => {
+const AllTeam = ({ bottomPadding, peopleToDisplay, topPadding, heading }) => {
 
     const renderPeople = () => {
         return peopleToDisplay.map((person, index) => <Person person={person} key={person.title} index={index} />)
@@ -25,4 +25,4 @@ const Team = ({ bottomPadding, peopleToDisplay, topPadding, heading }) => {
     )
 }
 
-export default Team;
+export default AllTeam;
