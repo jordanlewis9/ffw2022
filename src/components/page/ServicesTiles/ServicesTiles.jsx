@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import Tile from './Tile';
+import CTAButton from './CTAButton';
 import * as styles from './servicetiles.module.scss';
 
-const ServicesTiles = ({ bottomPadding, button, heading, preheading, tiles, topPadding }) => {
+const ServicesTiles = ({ bottomPadding, button, heading, preheading, tiles, topPadding, ctaButton }) => {
     const renderTiles = (tiles) => {
         return tiles.map((tile, index) => (
             <Tile tile={tile} key={tile?.link?.title} index={index} />
@@ -30,6 +31,7 @@ const ServicesTiles = ({ bottomPadding, button, heading, preheading, tiles, topP
                     <div className={styles.servicesTilesTileCol}>
                         <div className={styles.servicesTilesRow}>
                             {tiles && renderTiles(tiles)}
+                            {(ctaButton && (tiles.length % 3 === 1 || tiles.length % 3 === 2)) && <CTAButton count={tiles.length} button={ctaButton} />}
                         </div>
                     </div>
                 </div>

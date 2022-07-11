@@ -17,6 +17,11 @@ module.exports = () => {
                 sourceUrl
             }
         }
+        ctaButton {
+            target
+            title
+            url
+        }
         topPadding
         bottomPadding
     `;

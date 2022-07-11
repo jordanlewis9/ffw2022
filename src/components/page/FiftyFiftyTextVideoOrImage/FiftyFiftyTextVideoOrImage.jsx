@@ -31,12 +31,12 @@ const FiftyFiftyTextVideoOrImage = ({ animation, bottomPadding, content, image, 
                     <div className={`col-md-6 ${styles.fiftyVideoVideoCol}`}>
                         <div className={styles.fiftyVideoVideoWrap}>
                             {renderMedia()}
-                            <div className={styles.fiftyVideoTitleWrap}>
-                                {title && <div className={`h3 ${styles.fiftyVideoVideoTitle}`}>
+                            {title && <div className={styles.fiftyVideoTitleWrap}>
+                                <div className={`h3 ${styles.fiftyVideoVideoTitle}`}>
                                     {title}
                                 </div>
-                                }
                             </div>
+                            }
                         </div>
                     </div>
                 </div>

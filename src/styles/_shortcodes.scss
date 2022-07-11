@@ -133,3 +133,22 @@
 		}
 	}
 }
+
+.quote-shortcode {
+	background-color: $pale-green;
+    width: 100%;
+    padding: 25px 50px;
+    text-transform: uppercase;
+    color: $white;
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 2px;
+    font-weight: 500;
+    line-height: 1.4;
+
+    @media screen and (max-width: 400px) {
+        font-size: 20px;
+        letter-spacing: 1px;
+        padding: 40px 25px;
+    }
+}
