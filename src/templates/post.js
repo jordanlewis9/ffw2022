@@ -1,12 +1,17 @@
+// See .cache/page-templates after running dev/build
+// to understand how this file ends up looking
+
 import React, { useEffect } from 'react'
-import { graphql } from 'gatsby'
-import { combineFields } from '../utils/combine-fields'
-import GlobalContainer from '../components/global/GlobalContainer'
-import BlogPageHeader from '../components/post/BlogPageHeader'
-import Content from '../components/post/Content';
+import { graphql } from 'gatsby';
+import 'aos/dist/aos.css';
+import GlobalContainer from '../components/global/GlobalContainer';
+import BlogPageHeader from '../components/global/BlogPageHeader';
+import BlogAuthorBox from '../components/global/BlogAuthorBox';
+// import './pageTemplate.module.scss';
 
+// ### COMPONENT IMPORTS ### DO NOT MODIFY OR MOVE THIS COMMENT ###
 
-const NewsTemplate = pageProps => {
+const PageTemplate = pageProps => {
   let AOS;
   useEffect(() => {
     /**
@@ -25,59 +30,43 @@ const NewsTemplate = pageProps => {
       AOS.refresh();
     }
   });
-  const data = combineFields(pageProps.data.wpPost, 'post')
 
+  const { categories, date, postAuthor, title } = pageProps.data.wpPost;
+
+  let components
+  // ### COMPONENTS VARIABLE ### DO NOT MODIFY OR MOVE THIS COMMENT ###
+  components = components.map(component => {
+    return {
+      name: component.__typename.split('_').pop(),
+      data: component,
+    }
+  })
   return (
-    <GlobalContainer props={pageProps} queryName="wpPost">
+    <GlobalContainer pageProps={pageProps}>
       <BlogPageHeader />
-      <Content {...data} />
+      <div className="single-wrap">
+          <div className="container container-medium single-container">
+            <article>
+              <header className='single-post-header'>
+                  <h1 className='single-post-title'>
+                      {title}
+                  </h1>
+                  <div className='single-post-meta'>
+                      {date}
+                  </div>
+              </header>
+              {components.map((component, index) => {
+                // ### COMPONENT RENDERING ### DO NOT MODIFY OR MOVE THIS COMMENT ###
+                return <div>Error: The component {component.name} was not found</div>
+              })}
+              <BlogAuthorBox categories={categories} postAuthor={postAuthor} />
+            </article>
+          </div>
+      </div>
     </GlobalContainer>
   )
 }
 
-export default NewsTemplate
+export default PageTemplate
 
-export const query = graphql`
-  query PostQuery($id: String!) {
-    wpPost(id: { eq: $id }) {
-      seo {
-        metaDescription
-        title
-      }
-      title
-      date(formatString: "MM.DD.YYYY")
-      content
-      author {
-        node {
-          extraInfo {
-            shortBio
-            headshot {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-            }
-            position
-            bio
-            funFact
-            teamMember {
-              ... on WpPerson {
-                id
-                uri
-              }
-            }
-          }
-          name
-          uri
-        }
-      }
-      categories {
-        nodes {
-          databaseId
-          name
-        }
-      }
-    }
-  }
-`
+// ### PAGE QUERY ### DO NOT MODIFY OR MOVE THIS COMMENT ###

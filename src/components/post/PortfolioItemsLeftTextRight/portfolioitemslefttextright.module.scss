@@ -1,0 +1,30 @@
+.portfolio-text {
+    overflow: hidden;
+
+    &-no-image {
+        background-color: $light-gray;
+    }
+
+    &-content-col {
+        margin-bottom: 30px;
+
+        @include sm-min {
+            order: 2;
+            margin-bottom: 0;
+            padding-left: 60px;
+        }
+    }
+
+    &-portfolio-wrap {
+        grid-template-columns: repeat(2, 1fr);
+        display: grid;
+        grid-template-rows: repeat(6, 1fr);
+        align-items: center;
+        margin: -10px;
+
+        @include sm-min {
+            margin-bottom: -20%;
+            margin-top: -20%;
+        }
+    }
+}

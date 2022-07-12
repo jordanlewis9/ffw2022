@@ -3,13 +3,7 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: process.env.WPGRAPHQL_URL || `https://headless-forefront-2022.flywheelsites.com/graphql`,
-        auth: {
-          htaccess: {
-            username: process.env.HTTPBASICAUTH_USERNAME,
-            password: process.env.HTTPBASICAUTH_PASSWORD,
-          }
-        }
+        url: `http://headless-forefront-2022.local/graphql`
       },
     },
     `gatsby-transformer-sharp`,
@@ -24,7 +18,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-apollo',
       options: {
-        uri: process.env.WPGRAPHQL_URL || `https://headless-forefront-2022.flywheelsites.com/graphql`
+        uri: `http://headless-forefront-2022.local/graphql`
       }
     }
   ],

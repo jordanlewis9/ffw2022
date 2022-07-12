@@ -1,0 +1,21 @@
+.numbered-list {
+    &-list-item {
+        border-bottom: 1px solid $medium-gray;
+		padding: 20px;
+		position: relative;
+		display: flex;
+		align-items: center;
+
+		@include sm-min {
+			padding: 30px 20px;
+		}
+    }
+
+    &-list-number {
+        color: $white;
+        font-family: $dm-serif-display;
+        font-size: 58px;
+        width: 80px;
+        flex-shrink: 0;
+    }
+}

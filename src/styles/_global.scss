@@ -669,3 +669,14 @@ div.faqs-page-faq-open {
 		}
 	}
 }
+
+.single-post {
+	&-header {
+        margin-bottom: 30px;
+    }
+
+    &-title {
+        font-size: 48px;
+        margin-bottom: 10px;
+    }
+}
