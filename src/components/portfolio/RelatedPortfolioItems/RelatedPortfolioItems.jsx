@@ -13,6 +13,7 @@ const RelatedPortfolioItems = ({ relatedPortfolios }) => {
         const fetchData = async () => {
             try {
                 const data = await axios.get(`${process.env.GATSBY_ROOT}/wp-json/wp/v2/portfolio?per_page=4&portfolio_industry=${portfolioIndustry.databaseId}&orderby=rand`);
+                console.log(data);
                 setIsRest(true);
                 setRelatedItems(data.data);
             } catch (err) {
@@ -22,7 +23,7 @@ const RelatedPortfolioItems = ({ relatedPortfolios }) => {
             }
         }
 
-        if (portfolioItems && portfolioItems.length === 4) {
+        if (portfolioItems) {
             setRelatedItems(portfolioItems);
         } else {
             fetchData();
