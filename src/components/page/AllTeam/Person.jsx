@@ -15,7 +15,10 @@ const Person = ({ person, index }) => {
         <div className={`col-md-4 col-lg-3 ${styles.teamBlockCol}`} data-aos="fade-up" data-aos-delay={(index + 1) * 50}>
             <Link to={person.uri} className={styles.teamBlockMember} title={person.title}>
                 <div className={`${styles.teamBlockImage} bg-cover`} style={{ backgroundImage: image && `url('${image}')` }}></div>
-                <div className={styles.teamBlockName}>{renderNameSpanTags()}</div>
+                <div className={styles.teamBlockName}>
+                    {renderNameSpanTags()}
+                    <span className={styles.teamBlockPosition}>{person?.team?.position}</span>
+                </div>
             </Link>
         </div>
     )

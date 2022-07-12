@@ -38,6 +38,15 @@
                 font-size: 24px;
                 letter-spacing: 2.7px;
             }
+
+            &.team-block-position {
+                color: $green;
+				font-weight: 400;
+				font-size: 16px;
+				letter-spacing: 1.5px;
+				font-style: italic;
+				display: block;
+            }
         }
     }
 }

@@ -50,7 +50,7 @@ const GlobalContainer = (props) => {
 
     return (
         <div className={`page-content ${isHome && isHome}`}>
-            <Helmet>
+            <Helmet htmlAttributes={{ lang: 'en'}}>
                 <link rel="icon" type="image/x-icon" href="img/favicon.png"></link>
                 <title>{pageTitle}</title>
                 <meta name="description" content={pageDescription}></meta>
