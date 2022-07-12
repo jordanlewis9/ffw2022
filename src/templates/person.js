@@ -57,12 +57,6 @@ query PersonQuery($id: String!) {
               }
             }
           }
-          backLink {
-            target
-            title
-            url
-          }
-          authorId
         }
     }
   }

@@ -75,7 +75,6 @@ const Person = ({ person }) => {
                         {person.team.position && <h4 className={styles.authorPagePosition}>{person.team.position}</h4>}
                         <div className="triangles-shortcode"></div>
                         <span dangerouslySetInnerHTML={{ __html: person.team.bio}}></span>
-                        <Link to={person?.team?.backLink?.url || '/our-team'} target={person?.team?.backLink?.target || '_self'} title={person?.team?.backLink?.title || 'Back To Our Team'} className={`${styles.authorPageBackButton} forefrontweb-button`}><span>{person?.team?.backLink?.title || 'Back To Our Team'}</span></Link>
                     </div>
                 </div>
             </div>
