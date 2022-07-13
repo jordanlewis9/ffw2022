@@ -12,6 +12,8 @@
 	position: relative;
 	margin-bottom: 15px;
 	text-decoration: none;
+	margin-left: 0 !important;
+	margin-right: 15px;
 
 	&:last-child:not(.nav-links-button) {
 		margin-bottom: 0;
