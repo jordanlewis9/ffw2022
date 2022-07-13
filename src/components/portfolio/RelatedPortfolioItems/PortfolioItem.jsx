@@ -1,46 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'gatsby';
 import * as styles from './portfolioitem.module.scss';
-import axios from 'axios';
 
 const PortfolioItem = ({ item, isRest, index }) => {
+    const featuredImage = item?.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData?.images?.fallback?.src;
+    const logoImage = item?.portfolioItem?.logo?.localFile?.childImageSharp?.gatsbyImageData?.images?.fallback?.src;
     const [itemImage, setItemImage] = useState(null);
     const [itemLogo, setItemLogo] = useState(null);
     const [itemLink, setItemLink] = useState(null);
 
     useEffect(() => {
-        const fetchFeaturedImage = async () => {
-            try {
-                const data = await axios.get(`${process.env.GATSBY_ROOT}/wp-json/wp/v2/media?include=${item['featured_media']}`);
-                setItemImage(data.data[0].source_url);
-            } catch (err) {
-                if (process.env.NODE_ENV === 'development') {
-                    console.error(err.response.data);
-                }
-            }
+        if (featuredImage) {
+            setItemImage(featuredImage);
         }
 
-        const fetchLogo = async () => {
-            try {
-                const data = await axios.get(`${process.env.GATSBY_ROOT}/wp-json/wp/v2/media?include=${item.acf.logo}`);
-                setItemLogo(data.data[0].source_url)
-            } catch (err) {
-                if (process.env.NODE_ENV === 'development') {
-                    console.error(err.response.data);
-                }
-            }
+        if (logoImage) {
+            setItemLogo(logoImage);
         }
 
-        if (isRest) {
-            fetchFeaturedImage();
-            fetchLogo();
-            setItemLink(item.link.replace(process.env.GATSBY_ROOT, ''));
-        } else {
-            setItemImage(item.featuredImage.node.sourceUrl);
-            setItemLogo(item.portfolioItem.logo.sourceUrl);
-            setItemLink(item.uri);
+        if (item?.uri) {
+            setItemLink(item?.uri);
         }
-    }, [isRest, item]);
+    }, [item]);
 
 
     return (

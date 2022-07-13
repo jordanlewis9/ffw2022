@@ -1,39 +1,59 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'gatsby';
-import axios from 'axios';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 import PortfolioItem from './PortfolioItem';
 import * as styles from './relatedportfolioitems.module.scss';
 
 const RelatedPortfolioItems = ({ relatedPortfolios }) => {
     const { bottomPadding, heading, portfolioIndustry, portfolioItems, topPadding } = relatedPortfolios;
     const [relatedItems, setRelatedItems] = useState(null);
-    const [isRest, setIsRest] = useState(false);
+
+    const data = useStaticQuery(graphql`
+    query RelatedItemQuery {
+        allWpPortfolioIndustry {
+          nodes {
+            name
+            portfolios {
+              nodes {
+                uri
+                title
+                featuredImage {
+                  node {
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData(formats: WEBP)
+                      }
+                    }
+                  }
+                }
+                portfolioItem {
+                  logo {
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData(formats: WEBP)
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await axios.get(`${process.env.GATSBY_ROOT}/wp-json/wp/v2/portfolio?per_page=4&portfolio_industry=${portfolioIndustry.databaseId}&orderby=rand`);
-                console.log(data);
-                setIsRest(true);
-                setRelatedItems(data.data);
-            } catch (err) {
-                if (process.env.NODE_ENV === 'development') {
-                    console.error(err.response.data);
-                }
-            }
-        }
-
-        if (portfolioItems) {
-            setRelatedItems(portfolioItems);
+        if (!portfolioItems && portfolioIndustry) {
+            const filteredData = data.allWpPortfolioIndustry.nodes.find(industry => industry.name === portfolioIndustry.name);
+            setRelatedItems(filteredData.portfolios.nodes.slice(0, 4));
         } else {
-            fetchData();
+            setRelatedItems(portfolioItems);
         }
     }, [])
 
     const renderPortfolioItems = () => {
         return relatedItems.map((item, index) => {
             return (
-                    <PortfolioItem key={index} item={item} isRest={isRest} index={index} />
+                    <PortfolioItem key={index} item={item} index={index} />
             )
         })
     }

@@ -29,7 +29,7 @@ const PortfolioItem = ({ image, slug, title, isRest }) => {
     }, [isRest, image]);
 
     return (
-        <div className={styles.portfolioTextItem} data-aos="fade-up">
+        <div className={styles.portfolioTextItem}>
             <Link to={itemSlug} className={`${styles.portfolioitemCompactsimple} bg-cover`} title={title} target="_self" style={{ backgroundImage: itemImage && `url('${itemImage}')`}}>
                 <div className={styles.portfolioitemCompactsimpleTitle} dangerouslySetInnerHTML={{ __html: title}}></div>
             </Link> 

@@ -4,6 +4,10 @@
         width: 25%;
 
 		@include sm-max {
+			width: 50%;
+		}
+
+		@include mb-max {
 			width: 100%;
 		}
     }

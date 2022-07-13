@@ -39,6 +39,7 @@
     "react-helmet": "^6.1.0",
     "react-responsive-carousel": "^3.2.22",
     "react-select": "^5.2.2",
+    "react-slick": "^0.29.0",
     "rellax": "^1.12.1",
     "sass": "^1.49.7"
   },
