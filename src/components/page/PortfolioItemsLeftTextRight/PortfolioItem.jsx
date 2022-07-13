@@ -8,25 +8,9 @@ const PortfolioItem = ({ image, slug, title, isRest }) => {
     const [itemSlug, setItemSlug] = useState(null);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await axios.get(`${process.env.GATSBY_ROOT}/wp-json/wp/v2/media?include=${image}`);
-                setItemImage(data.data[0].source_url);
-            } catch (err) {
-                if (process.env.NODE_ENV === 'development') {
-                    console.error(err);
-                }
-            }
-        };
-
-        if (isRest) {
-            fetchData();
-            setItemSlug(slug.replace(process.env.GATSBY_ROOT, ''))
-        } else {
-            setItemImage(image);
-            setItemSlug(slug)
-        }
-    }, [isRest, image]);
+        setItemImage(image);
+        setItemSlug(slug)
+    }, [image, slug]);
 
     return (
         <div className={styles.portfolioTextItem}>
