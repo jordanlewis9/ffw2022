@@ -1,6 +1,14 @@
 .category-portfolio-items-item {
     padding: 10px;
-    width: 100%;
+    width: 25%;
+
+	@include sm-max {
+		width: 50%;
+	}
+
+	@include mb-max {
+		width: 100%;
+	}
 }
 
 .portfolio-item-compact {

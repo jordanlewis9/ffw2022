@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { combineFields } from '../utils/combine-fields'
 import GlobalContainer from '../components/global/GlobalContainer'
 import BlogPageHeader from '../components/post/BlogPageHeader'
-import Content from '../components/post/Content';
+import Content from '../components/global/Content';
 
 
 const NewsTemplate = pageProps => {
