@@ -4,10 +4,8 @@ import { PagePropsContext } from '../components/global/GlobalContext';
 import GlobalContainer from '../components/global/GlobalContainer';
 
 const NotFoundPage = (pageProps) => {
-  // const { pageProps } = useContext(PagePropsContext);
 
   useEffect(() => {
-    console.log(pageProps);
     const searchTerm = pageProps?.location?.pathname.split('/');
     navigate(`/site-search?q=${searchTerm[searchTerm.length - 1]}`)
   }, [])
