@@ -680,3 +680,9 @@ div.faqs-page-faq-open {
         margin-bottom: 10px;
     }
 }
+
+.home-hero-popout-active {
+	transform: translateX(0) !important;
+	opacity: 1 !important;
+	z-index: 5 !important;
+}

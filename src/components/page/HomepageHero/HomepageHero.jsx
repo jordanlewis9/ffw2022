@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import * as styles from './HomepageHero.module.scss';
 
 const HomepageHero = ({ rightImage, popoutHeading, popoutContent, preheading, heading, content, solidButton, ghostButton, desktopMarginBottom }) => {
     let image;
+    const popout = useRef();
 
     if (rightImage) {
         image = getImage(rightImage.localFile);
+    }
+
+    const handleHoverOver = () => {
+        const theElement = popout.current;
+        theElement.classList.add('home-hero-popout-active');
+    }
+
+    const handleHoverLeave = () => {
+        const theElement = popout.current;
+        theElement.classList.remove('home-hero-popout-active');
     }
 
     return (
@@ -39,7 +50,8 @@ const HomepageHero = ({ rightImage, popoutHeading, popoutContent, preheading, he
                     <div className={styles.homeHeroImageCol}>
                         <div className={styles.homeHeroImageWrap} data-aos="zoom-in-left">
                             {image && <GatsbyImage image={image} className={styles.homeHeroImage} alt={rightImage.altText} />}
-                            <div className={styles.homeHeroPopout}>
+                            <div className={styles.homeHeroPopoutArrows} onMouseEnter={handleHoverOver}></div>
+                            <div className={styles.homeHeroPopout} ref={popout} onMouseLeave={handleHoverLeave}>
                                 <div className={styles.homeHeroPopoutHeadingwrap}>
                                     <h3 className={styles.homeHeroPopoutHeading}>
                                         {popoutHeading}
