@@ -86,7 +86,7 @@ const NavMenu = ({ showMenu, setShowMenu }) => {
             possibleParents = [];
             subMenuItems = [];
             if (node.childItems.nodes.length === 0) {
-                return <li className={`${styles.menuItemNoChildren} ${styles.menuItem}`} key={node.databaseId}><Link to={node?.path} className={`${node.path === pageProps.path ? styles.menuItemActive : ""}`}>{node?.label}</Link></li>;
+                return <li className={`${styles.menuItemNoChildren} ${styles.menuItem}`} key={node.databaseId}><Link to={node?.path} className={`${pageProps && node.path === pageProps.path ? styles.menuItemActive : ""}`}>{node?.label}</Link></li>;
               } else {
                 possibleParents = [node.databaseId]
                 subMenuItems = [node]
@@ -98,7 +98,7 @@ const NavMenu = ({ showMenu, setShowMenu }) => {
                 });
                 return (
                   <li onClick={(e) => handleShowSubMenu(e)} onMouseEnter={(e) => handleShowSubMenu(e, showSubMenu)} onMouseLeave={(e) => handleShowSubMenu(e)} data-database-id={node.databaseId} className={`${styles.menuItemHasChildren} ${styles.menuItem} menu-item-has-children`} key={node.databaseId} data-sub-menu={node.databaseId}>
-                    <span className={`${styles.menuItemHasChildrenLabel} ${node.path === pageProps.path ? styles.menuItemActive : ""}`}>{node.label}</span>
+                    <span className={`${styles.menuItemHasChildrenLabel} ${pageProps && node?.path === pageProps?.path ? styles.menuItemActive : ""}`}>{node.label}</span>
                     <DropdownMenu themeOptions={themeOptions} subMenuItems={subMenuItems} showSubMenu={showSubMenu} handleShowSubMenu={handleShowSubMenu} databaseId={node.databaseId} />
                   </li>);
               }
