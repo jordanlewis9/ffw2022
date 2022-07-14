@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { PagePropsContext } from '../GlobalContext';
 import { Link } from 'gatsby';
 import * as styles from './dropdownmenu.module.scss';
 
 const DropdownMenu = ({themeOptions, subMenuItems, showSubMenu, handleShowSubMenu, databaseId}) => {
+    const { pageProps } = useContext(PagePropsContext);
     const image = themeOptions.dropdownCtaImage?.localFile?.childImageSharp?.gatsbyImageData?.images?.fallback?.src;
 
     const renderParentItem = () => {
@@ -19,13 +21,15 @@ const DropdownMenu = ({themeOptions, subMenuItems, showSubMenu, handleShowSubMen
         })
     }
 
+    console.log(pageProps);
+
     const renderSubMenuItems = () => {
         const renderedSubMenuItems = subMenuItems.map(item => {
             if (item.parentDatabaseId === 0) {
                  return;
             } else {
                 return (
-                    <li key={item?.label} className={styles.dropdownCenterColumnMenuItem}>
+                    <li key={item?.label} className={`${styles.dropdownCenterColumnMenuItem} ${pageProps.path === item?.path ? styles.dropdownCenterColumnMenuItemActive : ""}`}>
                         <Link key={item?.label} to={item?.path} title={item?.label} name={item?.label} className={styles.dropdownCenterColumnMenuItemLink}>
                             {item?.label}
                         </Link>

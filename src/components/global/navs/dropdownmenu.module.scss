@@ -183,6 +183,10 @@
                 margin: 0;
                 border-bottom: 1px solid $medium-gray;
 
+                &-active > a {
+                    color: $pale-green;
+                }
+
                 &-link {
                     padding: 10px 20px;
                     font-size: 1.25rem;

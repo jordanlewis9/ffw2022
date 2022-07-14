@@ -190,3 +190,7 @@
         transform: translateX(calc(100% + 20px));
     }
 }
+
+.menu-item-active {
+    color: $orange !important;
+}
