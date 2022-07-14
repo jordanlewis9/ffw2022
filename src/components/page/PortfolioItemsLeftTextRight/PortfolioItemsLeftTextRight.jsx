@@ -81,9 +81,6 @@ const PortfolioItemsLeftTextRight = ({ content, backgroundImage }) => {
         
     }, []);
 
-    console.log(leftPillar);
-    console.log(rightPillar);
-
     const renderPortfolioItems = (items) => {
         return items.map(item => (
             <PortfolioItem key={item.uri} image={item.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData?.images?.fallback?.src} slug={item.uri} title={item.title} />
