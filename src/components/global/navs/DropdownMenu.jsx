@@ -29,7 +29,7 @@ const DropdownMenu = ({themeOptions, subMenuItems, showSubMenu, handleShowSubMen
                  return;
             } else {
                 return (
-                    <li key={item?.label} className={`${styles.dropdownCenterColumnMenuItem} ${pageProps.path === item?.path ? styles.dropdownCenterColumnMenuItemActive : ""}`}>
+                    <li key={item?.label} className={`${styles.dropdownCenterColumnMenuItem} ${pageProps && pageProps.path === item?.path ? styles.dropdownCenterColumnMenuItemActive : ""}`}>
                         <Link key={item?.label} to={item?.path} title={item?.label} name={item?.label} className={styles.dropdownCenterColumnMenuItemLink}>
                             {item?.label}
                         </Link>
