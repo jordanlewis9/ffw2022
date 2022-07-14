@@ -131,7 +131,7 @@ const NavMenu = ({ showMenu, setShowMenu }) => {
                 {nodes && renderMainNav()}
                 <li className={styles.navSearchContainer}>
                   <FontAwesomeIcon icon={faSearch} className={styles.navSearchIcon} onClick={handleSearchClick} title="Search"/>
-                  <form className={styles.navSearch} action="" onSubmit={(e) => handleSearchSubmit(e)} ref={formRef}>
+                  <form className={styles.navSearch} action="" onSubmit={(e) => handleSearchSubmit(e)} ref={formRef} name="Navigation Search Form">
                     <input type="text" className={styles.navSearchInput} value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
                   </form>
                 </li>
