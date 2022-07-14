@@ -1,6 +1,17 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react';
+import { navigate } from 'gatsby';
+import { PagePropsContext } from '../components/global/GlobalContext';
+import GlobalContainer from '../components/global/GlobalContainer';
 
-const NotFoundPage = ({ data }) => {
+const NotFoundPage = (pageProps) => {
+  // const { pageProps } = useContext(PagePropsContext);
+
+  useEffect(() => {
+    console.log(pageProps);
+    const searchTerm = pageProps?.location?.pathname.split('/');
+    navigate(`/site-search?q=${searchTerm[searchTerm.length - 1]}`)
+  }, [])
+
   return (
     <>
       <h1>404: Not Found</h1>

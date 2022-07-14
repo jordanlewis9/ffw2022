@@ -686,3 +686,10 @@ div.faqs-page-faq-open {
 	opacity: 1 !important;
 	z-index: 5 !important;
 }
+
+.show-header-search {
+	opacity: 1;
+	height: auto;
+	pointer-events: all;
+	transition: all 0.2s;
+}

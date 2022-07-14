@@ -1,12 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import { PagePropsContext } from '../GlobalContext';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import { useStaticQuery, graphql, Link, navigate } from 'gatsby';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import DropdownMenu from './DropdownMenu';
 import * as styles from './navmenu.module.scss';
 
 const NavMenu = ({ showMenu, setShowMenu }) => {
     const { pageProps } = useContext(PagePropsContext);
     const [showSubMenu, setShowSubMenu] = useState(false);
+    const [searchValue, setSearchValue] = useState("");
+    const formRef = useRef();
 
     const data = useStaticQuery(graphql`query {
         wpMenu(name: {eq: "Primary Menu"}) {
@@ -106,10 +110,32 @@ const NavMenu = ({ showMenu, setShowMenu }) => {
           return mainMenu;
       }
 
+      const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        navigate(`/site-search?q=${searchValue}`);
+      }
+
+      const handleSearchClick = () => {
+        const theForm = formRef.current;
+
+        if (theForm.classList.contains('show-header-search')) {
+          theForm.classList.remove('show-header-search')
+        } else {
+          theForm.classList.add('show-header-search');
+        }
+      }
+
     return (
         <>
             <ul className={`${styles.navList} ${showMenu ? styles.active : ''}`}>
                 {nodes && renderMainNav()}
+                <li className={styles.navSearchContainer}>
+                  <FontAwesomeIcon icon={faSearch} className={styles.navSearchIcon} onClick={handleSearchClick} title="Search"/>
+                  <form className={styles.navSearch} action="" onSubmit={(e) => handleSearchSubmit(e)} ref={formRef}>
+                    <input type="text" className={styles.navSearchInput} value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+                  </form>
+                </li>
+                <li className={`${styles.menuItemNoChildren} ${styles.menuItem} ${styles.navSearchLinkMobile}`}><Link to='/site-search' className={`${pageProps && '/site-search/' === pageProps.path ? styles.menuItemActive : ""}`}>Search</Link></li>
             </ul>
             <button aria-label="Open Mobile Menu" name="Open Mobile Menu" className={`${styles.mobileButton} ${showMenu && styles.mobileButtonShown}`} onClick={() => setShowMenu(!showMenu)}>
               <span className={`${styles.mobileButtonTopBar} ${showMenu ? styles.mobileMenuShown : ''}`}></span>

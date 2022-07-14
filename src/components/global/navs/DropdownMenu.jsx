@@ -21,8 +21,6 @@ const DropdownMenu = ({themeOptions, subMenuItems, showSubMenu, handleShowSubMen
         })
     }
 
-    console.log(pageProps);
-
     const renderSubMenuItems = () => {
         const renderedSubMenuItems = subMenuItems.map(item => {
             if (item.parentDatabaseId === 0) {
