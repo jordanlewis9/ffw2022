@@ -131,8 +131,9 @@ const NavMenu = ({ showMenu, setShowMenu }) => {
                 {nodes && renderMainNav()}
                 <li className={styles.navSearchContainer}>
                   <FontAwesomeIcon icon={faSearch} className={styles.navSearchIcon} onClick={handleSearchClick} title="Search"/>
+                  <label htmlFor="Navigation Search Form" className={styles.navSearchLabel} hidden={true}>Search</label>
                   <form className={styles.navSearch} action="" onSubmit={(e) => handleSearchSubmit(e)} ref={formRef} name="Navigation Search Form">
-                    <input type="text" className={styles.navSearchInput} value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+                    <input aria-label="Search" type="text" className={styles.navSearchInput} value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
                   </form>
                 </li>
                 <li className={`${styles.menuItemNoChildren} ${styles.menuItem} ${styles.navSearchLinkMobile}`}><Link to='/site-search' className={`${pageProps && '/site-search/' === pageProps.path ? styles.menuItemActive : ""}`}>Search</Link></li>
