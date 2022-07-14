@@ -5,7 +5,7 @@ const SingleIcon = ({ item }) => {
     return (
         <li className={styles.iconListListItem}>
             <div className={`${styles.iconListIcon} bg-contain`} style={{ backgroundImage: `url('${item?.icon?.sourceUrl}')` }}></div>
-            {item.text}
+            <span dangerouslySetInnerHTML={{ __html: item?.text }}></span>
         </li>
     )
 }
