@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
 import { useStaticQuery, graphql } from 'gatsby';
 import SingleBlog from './SingleBlog';
 import { PagePropsContext } from '../../global/GlobalContext';

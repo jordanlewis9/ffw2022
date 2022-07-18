@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'gatsby';
-import axios from 'axios';
 import * as styles from './singleblog.module.scss';
 
 const SingleBlog = ({ blog, animation }) => {

@@ -1,31 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import Blog from './Blog';
 import * as styles from './person.module.scss';
 
 const Person = ({ person }) => {
+    const data = useStaticQuery(graphql`
+    query AllPeopleBlogsQuery {
+        allWpPost(sort: {fields: date, order: DESC}) {
+            nodes {
+              title
+              uri
+              featuredImage {
+                node {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData(formats: WEBP)
+                    }
+                  }
+                }
+              }
+              date(formatString: "MM.DD.YYYY")
+              postAuthor {
+                postAuthor {
+                  ... on WpPerson {
+                    id
+                    databaseId
+                  }
+                }
+              }
+            }
+          }
+    }
+    `);
+
+    const allWpPost = data.allWpPost.nodes;
+
+    console.log(allWpPost);
+
     const [blogs, setBlogs] = useState(null);
     const image = person.team?.headshot?.localFile?.childImageSharp?.gatsbyImageData?.images?.fallback?.src;
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await axios.get(`${process.env.GATSBY_ROOT}/wp-json/wp/v2/posts?author=${person?.team?.authorId}`);
-                if (data) {
-                    setBlogs(data.data);
-                }
-            } catch (err) {
-                if (process.env.NODE_ENV === 'development') {
-                    console.error(err.response.data);
-                }
-            }
-        }
-
-        if (person?.team?.authorId) {
-            fetchData();
-        }
+        const filteredBlogs = allWpPost.filter(blog => parseFloat(blog.postAuthor.postAuthor.databaseId) === parseFloat(person.databaseId));
+        setBlogs(filteredBlogs);
     }, [])
+
+    console.log(blogs);
 
     const renderFunFact = () => {
         return (
@@ -52,7 +72,7 @@ const Person = ({ person }) => {
                     </div>
                     <div className={`col-md-8 ${styles.authorPagePostsCol}`}>
                         <div className="row">
-                            {blogs.map(blog => <Blog key={blog.id} blog={blog} />)}
+                            {blogs.map(blog => <Blog key={blog.title} blog={blog} />)}
                         </div>
                     </div>
                 </div>

@@ -44,6 +44,7 @@ query PersonQuery($id: String!) {
         title
       }
         title
+        databaseId
         uri
         team {
           bio
