@@ -537,6 +537,14 @@ div.mini-faqs-faq-content-open {
 		width: 100%;
 		margin-top: 10px;
 
+		&-previous.nav-links-button {
+			margin-left: 20px !important;
+		}
+
+		&-next.nav-links-button {
+			margin-right: 20px !important;
+		}
+
 		@include sm-min {
 			width: auto;
 		}
