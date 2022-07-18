@@ -51,18 +51,19 @@
 		align-items: center;
 		position: relative;
 		margin-bottom: -60px;
+		z-index: 2;
 
-		&:before {
-			position: absolute;
-			content: '';
-			background-image: url('/img/hero-popout-arrows.svg');
-			background-repeat: no-repeat;
-			background-position: center center;
-			background-size: 57px 25px;
-			width: 57px;
-			height: 25px;
-			right: 50%;
-		}
+		// &:before {
+		// 	position: absolute;
+		// 	content: '';
+		// 	background-image: url('/img/hero-popout-arrows.svg');
+		// 	background-repeat: no-repeat;
+		// 	background-position: center center;
+		// 	background-size: 57px 25px;
+		// 	width: 57px;
+		// 	height: 25px;
+		// 	right: 50%;
+		// }
 	}
 
 	&-popout {
@@ -75,9 +76,39 @@
 		transition: all 0.2s ease-in-out;
 		opacity: 0;
 		transform: translateX(20px);
+		z-index: -10;
+		// // pointer-events: none;
+
+		// &:hover {
+		// 	transform: translateX(0);
+		// 	opacity: 1;
+		// 	z-index: 5;
+		// }
 
 		@include lg-min {
 			left: 0;
+		}
+
+		&-arrows {
+			position: absolute;
+			content: '';
+			background-image: url('/img/hero-popout-arrows.svg');
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: 57px 25px;
+			width: 57px;
+			height: 25px;
+			right: 50%;
+			z-index: 4;
+
+			// &:hover {
+			// 	& + .home-hero-popout {
+			// 		transform: translateX(0);
+			// 		opacity: 1;
+			// 		z-index: 5;
+			// 		pointer-events: all;
+			// 	}
+			// }
 		}
 	}
 

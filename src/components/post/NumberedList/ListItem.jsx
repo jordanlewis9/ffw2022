@@ -7,7 +7,7 @@ const ListItem = ({ text, index }) => {
             <div className={styles.numberedListListNumber}>
                 {index + 1}
             </div>
-            <div className="numberedListListItemContent" dangerouslySetInnerHTML={{ __html: text }}></div>
+            <div className={styles.numberedListListItemContent} dangerouslySetInnerHTML={{ __html: text }}></div>
         </li>
     )
 }

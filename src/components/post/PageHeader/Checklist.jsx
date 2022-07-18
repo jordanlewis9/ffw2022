@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { PagePropsContext } from '../../global/GlobalContext';
-import axios from 'axios';
 import * as styles from './checklist.module.scss';
 
 const Checklist = ({ checklist }) => {
     const { pageProps } = useContext(PagePropsContext);
 
     const data = useStaticQuery(graphql`
-    query NewChecklistQuery {
+    query PostTheChecklistQuery {
         allWpChecklist {
           nodes {
             databaseId

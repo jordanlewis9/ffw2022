@@ -9,24 +9,5 @@ module.exports = () => {
                   }
             }
         }
-        topPadding
-        bottomPadding
-        portfolioItems {
-            ... on WpPortfolio {
-              id
-              content
-              title
-              uri
-              featuredImage {
-                node {
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData(formats: WEBP)
-                    }
-                  }
-                }
-              }
-            }
-          }
     `
 }

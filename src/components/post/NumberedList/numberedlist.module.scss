@@ -7,6 +7,10 @@
         @include lg-min {
             padding-left: calc((100vw - 1300px) / 2);
         }
+
+        @include mb-max {
+            padding: 0 !important;
+        }
     }
 
     &-image {
@@ -26,21 +30,5 @@
         position: relative;
         padding: 0;
         margin: 0;
-
-        &:before {
-            content: '';
-			position: absolute;
-			left: 0;
-			top: 0;
-			bottom: 0;
-			background-color: $pale-green;
-			width: 120px;
-			margin-left: -40px;
-
-			@include lg-min {
-				width: calc((100vw - 1260px) / 2 + 80px);
-				margin-left: calc(-1 * (100vw - 1260px) / 2);
-			}
-        }
     }
 }

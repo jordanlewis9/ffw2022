@@ -8,7 +8,7 @@ const OurWork = ({ paddingTop, paddingBottom }) => {
     const [industryList, setIndustryList] = useState([]);
 
     const data = useStaticQuery(graphql`
-        query newWorkQuery {
+        query PostWorkQuery {
             allWpPortfolio {
                 nodes {
                   portfolioIndustries {
