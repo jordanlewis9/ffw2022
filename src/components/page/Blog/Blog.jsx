@@ -54,8 +54,8 @@ const Blog = ({ animation, paddingTop, paddingBottom }) => {
     useEffect(() => {
 
         const getTotalPages = (blogsArray) => {
-            const tenPerPage = blogsArray.length / 1;
-            const leftovers = blogsArray.length % 1;
+            const tenPerPage = blogsArray.length / 10;
+            const leftovers = blogsArray.length % 10;
 
             if (leftovers > 0) {
                 setTotalPages(tenPerPage + 1);
@@ -79,10 +79,10 @@ const Blog = ({ animation, paddingTop, paddingBottom }) => {
                     }
                 });
                 getTotalPages(filteredBlogsArray);
-                setCurrentBlogs(filteredBlogsArray.slice(0, 1));
+                setCurrentBlogs(filteredBlogsArray.slice(0, 10));
             } else {
                 getTotalPages(allWpPost);
-                setCurrentBlogs(allWpPost.slice(0, 1));
+                setCurrentBlogs(allWpPost.slice(0, 10));
             }
         } else {
             if (filteredCategories.length > 0) {
@@ -99,9 +99,9 @@ const Blog = ({ animation, paddingTop, paddingBottom }) => {
                         filteredBlogsArray.push(post);
                     }
                 });
-                setCurrentBlogs(filteredBlogsArray.slice((currentPage * 1 - 1), (currentPage * 1)));
+                setCurrentBlogs(filteredBlogsArray.slice((currentPage * 10 - 10), (currentPage * 10)));
             } else {
-                setCurrentBlogs(blogs.slice((currentPage * 1 - 1), (currentPage * 1)));
+                setCurrentBlogs(blogs.slice((currentPage * 10 - 10), (currentPage * 10)));
             }
         }
 
