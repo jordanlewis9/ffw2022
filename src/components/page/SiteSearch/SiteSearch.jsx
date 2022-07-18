@@ -51,10 +51,20 @@ const SiteSearch = ({ paddingTop, paddingBottom }) => {
             nodeType
           }
         }
+        allWpPerson {
+            nodes {
+              title
+              uri
+              nodeType
+              team {
+                position
+              }
+            }
+          }
       }      
     `);
 
-    const { allWpFaq, allWpPage, allWpPortfolio, allWpPost } = data;
+    const { allWpFaq, allWpPage, allWpPortfolio, allWpPost, allWpPerson } = data;
 
     const [searchTerm, setSearchTerm] = useState(pageProps?.location?.search?.replace('?q=', "") || '');
     const [searchResults, setSearchResults] = useState(null);
@@ -89,6 +99,15 @@ const SiteSearch = ({ paddingTop, paddingBottom }) => {
                     results.push(post);
                 }
             })
+            allWpPerson.nodes.forEach(person => {
+                if (person.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    person.nodeType = "Team Member";
+                    results.push(person);
+                } else if (person.team.position.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    person.nodeType = "Team Member";
+                    results.push(person);
+                }
+            })
         } else {
             allWpFaq.nodes.forEach(faq => {
                 faq.nodeType = "FAQ";
@@ -103,6 +122,10 @@ const SiteSearch = ({ paddingTop, paddingBottom }) => {
             allWpPost.nodes.forEach(post => {
                 post.nodeType = "Blog Post";
                 results.push(post);
+            })
+            allWpPerson.nodes.forEach(person => {
+                person.nodeType = "Team Member";
+                results.push(person);
             })
         }
 
