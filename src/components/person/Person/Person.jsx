@@ -35,8 +35,6 @@ const Person = ({ person }) => {
 
     const allWpPost = data.allWpPost.nodes;
 
-    console.log(allWpPost);
-
     const [blogs, setBlogs] = useState(null);
     const image = person.team?.headshot?.localFile?.childImageSharp?.gatsbyImageData?.images?.fallback?.src;
 
@@ -44,8 +42,6 @@ const Person = ({ person }) => {
         const filteredBlogs = allWpPost.filter(blog => parseFloat(blog.postAuthor.postAuthor.databaseId) === parseFloat(person.databaseId));
         setBlogs(filteredBlogs);
     }, [])
-
-    console.log(blogs);
 
     const renderFunFact = () => {
         return (
