@@ -9,7 +9,7 @@ const OurWork = ({ paddingTop, paddingBottom }) => {
 
     const data = useStaticQuery(graphql`
         query WorkQuery {
-            allWpPortfolio {
+            allWpPortfolio(sort: {fields: menuOrder}) {
                 nodes {
                   portfolioIndustries {
                     nodes {
