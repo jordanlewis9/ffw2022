@@ -48,8 +48,6 @@ const Blog = ({ animation, paddingTop, paddingBottom }) => {
     const [currentBlogs, setCurrentBlogs] = useState(null);
     const [totalPages, setTotalPages] = useState(null);
 
-    console.log(pageProps);
-
     useEffect(() => {
 
         const getTotalPages = (blogsArray) => {
