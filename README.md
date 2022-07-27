@@ -65,3 +65,19 @@ When running a Gravity Forms, you **must** create a new component, and retrieve 
 When creating a form, select fields must either have a default value, or a blank value selection showing as well as being flagged as required. If there is no blank value and the select field is required, in the case the user accidentally skips the field, the app will break. The browser will assume that the field has a value and skip the required check, which it does not.
 
 Name Field always sends Prefix, First, Middle, Last, and Suffix. You should do a generic text field for names instead.
+
+## ENV Variables
+
+This code requires the use of environment variables, or .env for short. You can read more via Gatsby's [blog post](https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/) reagrding specific usage. For specific rules:
+
+1. Any sensitive information should be kept as a .env variable. This includes any back-end CMS links, secret keys, API keys, passwords, etc. 
+
+2. Keep local development variables in .env.development, and production variables in .env.production. 
+
+3. Be sure to add .env* to your .gitignore file! We do not want the variables escaping out in the wild. In the same breath, make sure that you do not accidentally push .env.development or .env.production to github/gitlab/etc.
+
+4. You must install the npm package dotenv, and then require it in whatever necessary file, in order to read .env variables. The .env variables do not have to be imported into a file.
+
+5. .env variable convention for listing is, for example, VARIABLE_NAME=nospacesorquotes, where VARIABLE_NAME is the name of the variable, and nospacesorquotes is the value of the variable.
+
+6. .env variables are unitless, hence the example value given above of nospacesorquotes. Do not add quotes on the left or right to designate a string or URL, and do not add a space at the beginning or end.
